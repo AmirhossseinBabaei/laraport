@@ -25,7 +25,7 @@ class Database
     }
 
 
-    public static function databaseConnection()
+    public static function databaseConnection(): PDO
     {
         $host = DB_HOST;
         $databaseName = DB_DATABASE;
