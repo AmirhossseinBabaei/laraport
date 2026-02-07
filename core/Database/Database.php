@@ -40,4 +40,9 @@ class Database
             throw new \PDOException($e->getMessage());
         }
     }
+
+    public static function newInsertId(): self
+    {
+        return self::$databaseInstance->lastInsertId();
+    }
 }
