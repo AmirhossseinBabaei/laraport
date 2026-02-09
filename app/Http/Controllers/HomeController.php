@@ -2,10 +2,13 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\User;
+use Core\View\View;
+
 class HomeController extends Controller
 {
-    public function index(): string
+    public function index()
     {
-        return "This is Home page";
+        return View::render('welcome', ['title' => 'laraport']);
     }
 }

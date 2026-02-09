@@ -89,7 +89,7 @@ trait HasQueryBuilder
 
     protected function executeQuery()
     {
-        $sql = '';
+        $sql = $this->sql;
 
         if (!empty($this->where)) {
             $whereQuery = '';

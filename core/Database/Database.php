@@ -4,7 +4,7 @@ declare(strict_types=1);
 
 namespace Core\Database;
 
-require_once "../../config/database.php";
+//require_once "../../config/database.php";
 
 use PDO;
 use Exception;

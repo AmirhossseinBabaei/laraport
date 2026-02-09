@@ -5,9 +5,6 @@ declare(strict_types=1);
 namespace Core\Traits;
 
 use Core\Database\Database;
-use http\Exception\UnexpectedValueException;
-
-require_once "core/Database/Database.php";
 
 trait HasCRUD
 {
@@ -42,11 +39,11 @@ trait HasCRUD
         return $this;
     }
 
-    protected function find($id)
+    public function find($id)
     {
         $this->setSql('SELECT * FROM ' . $this->table);
         $this->setWhere('AND', $this->primaryKey . ' = ?');
-        $this->setValue($this->primaryKey, $id);
+        $this->setValues($this->primaryKey, $id);
 
         $statement = $this->executeQuery();
         $data = $statement->fetch();
@@ -60,7 +57,7 @@ trait HasCRUD
 
     public function update(array $data, $id): static
     {
-        $this->setSql('UPDATE' . $this->table . "SET" . $this->setFillables($data) . ", $this->updatedAt" . " = Now()");
+        $this->setSql('UPDATE ' . $this->table . " SET " . $this->setFillables($data) . ", $this->updatedAt" . " = Now()");
         $this->setWhere('AND', $this->primaryKey . " = ?");
         $this->setValues($this->primaryKey, $id);
         $this->executeQuery();
@@ -70,7 +67,7 @@ trait HasCRUD
 
     public function getAll()
     {
-        $this->setSql("SELECT * FROM" . $this->table);
+        $this->setSql("SELECT * FROM " . $this->table);
         $statement = $this->executeQuery();
         $data = $statement->fetchAll();
 

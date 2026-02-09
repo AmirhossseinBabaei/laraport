@@ -44,7 +44,7 @@ $router->addRoute('get', '/', [\App\Http\Controllers\HomeController::class, 'ind
 class UserController { public function show($id)
 { $user = User::find($id); return view('users.show', compact('user')); } }
 
-<!-- resources/views/welcome.blade.php -->
+<!-- resources/views/welcome.php -->
 <!DOCTYPE html>
 <html>
 <head>

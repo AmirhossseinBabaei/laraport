@@ -10,6 +10,7 @@ class ComposerStaticInit7e95569dedb0b4875f6ec69fd56ad57e
         'C' => 
         array (
             'Core\\' => 5,
+            'Config\\' => 7,
         ),
         'A' => 
         array (
@@ -21,6 +22,10 @@ class ComposerStaticInit7e95569dedb0b4875f6ec69fd56ad57e
         'Core\\' => 
         array (
             0 => __DIR__ . '/../..' . '/core',
+        ),
+        'Config\\' => 
+        array (
+            0 => __DIR__ . '/../..' . '/config',
         ),
         'App\\' => 
         array (

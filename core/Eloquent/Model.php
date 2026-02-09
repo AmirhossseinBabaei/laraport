@@ -4,11 +4,17 @@ declare(strict_types=1);
 
 namespace Core\Eloquent;
 
+use Core\Traits\HasAttribute;
+use Core\Traits\HasCRUD;
+use Core\Traits\HasQueryBuilder;
+
 abstract class Model
 {
+    use HasQueryBuilder, HasCRUD, HasAttribute;
+
     protected string $table;
 
-    protected array $fillables;
+    protected array $fillable = [];
 
     protected string $primaryKey;
 
@@ -20,5 +26,5 @@ abstract class Model
 
     protected string $updatedAt;
 
-    protected string $collection;
+    protected array $collection;
 }

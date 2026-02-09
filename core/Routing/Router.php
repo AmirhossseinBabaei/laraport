@@ -4,6 +4,8 @@ declare(strict_types=1);
 
 namespace Core\Routing;
 
+use App\Exceptions\RouteNotFoundException;
+use Core\Exception\ExceptionHandler;
 use Exception;
 
 class Router
@@ -30,7 +32,7 @@ class Router
 
         foreach ($allMethodSupported as $methodSupport) {
             if (!in_array($method, $allMethodSupported, true)) {
-                throw new Exception("The route method $method not supported from this framework");
+                return ExceptionHandler::render('Method not exists', "The route method $method not supported from this framework");
             }
         }
 
@@ -41,7 +43,7 @@ class Router
                 'method' => $context[1]
             ];
         } else {
-            throw new Exception("Your controller or method is not defined");
+            return ExceptionHandler::render('Controller or method not found', 'Your controller or method is not defined');
         }
     }
 
@@ -53,7 +55,7 @@ class Router
             if ($route['path'] === $this->currentRoute) {
                 return $this->callController($route['controller'], $route['method']);
             } else {
-                throw new Exception("The route url $this->currentRoute not exists");
+                return ExceptionHandler::render('Route not found',"The route url $this->currentRoute not exists");
             }
         }
     }
@@ -61,13 +63,13 @@ class Router
     public function callController(string $controller, string $method)
     {
         if (!class_exists($controller)) {
-            throw new Exception("The controller $controller is not defined");
+            return ExceptionHandler::render('Controller not found', "The controller $controller is not defined");
         }
 
         $controller = new $controller();
 
         if (!method_exists($controller, $method)) {
-            throw new \Exception("Method '{$method}' not found in controller '{$controller}'");
+            return new \Exception("Method '{$method}' not found in controller '{$controller}'");
         }
 
         return $controller->$method();
